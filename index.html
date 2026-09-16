@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#102a43" />
+  <meta name="description" content="2026 关西 9 日旅行手册：京都、奈良、宇治、神户与大阪。" />
+  <title>关西 9 日旅行手册</title>
+  <style>
+    :root {
+      --ink: #102a43;
+      --muted: #627d98;
+      --paper: #f7f4ee;
+      --panel: #fffdf8;
+      --line: #d9e2ec;
+      --red: #d1495b;
+      --teal: #147d92;
+      --gold: #ca8a04;
+      --night: #102a43;
+      --shadow: 0 12px 28px rgba(16, 42, 67, .09);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; color: var(--ink); background: var(--paper); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; line-height: 1.55; }
+    body.night { --paper: #0d1b2a; --panel: #142a3e; --ink: #f2f6f8; --muted: #b8c7d4; --line: #345069; --shadow: 0 14px 32px rgba(0,0,0,.24); }
+    a { color: inherit; }
+    button { font: inherit; }
+    .wrap { width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
+    header { padding: 28px 0 20px; background: linear-gradient(135deg, #102a43 0%, #147d92 100%); color: #fff; }
+    header .wrap { display: flex; justify-content: space-between; gap: 20px; align-items: flex-end; }
+    .eyebrow { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; opacity: .75; }
+    h1 { font-size: clamp(28px, 5vw, 48px); line-height: 1.06; margin: 8px 0 6px; letter-spacing: 0; }
+    header p { margin: 0; opacity: .86; }
+    .meta { text-align: right; font-size: 13px; opacity: .86; white-space: nowrap; }
+    main { padding: 22px 0 64px; }
+    section { margin: 0 0 26px; }
+    .section-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin: 0 0 12px; }
+    h2 { font-size: 21px; margin: 0; letter-spacing: 0; }
+    .section-note { color: var(--muted); font-size: 13px; }
+    .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; box-shadow: var(--shadow); }
+    .focus { padding: 20px; display: grid; grid-template-columns: 1.1fr 1fr; gap: 18px; align-items: center; border-left: 6px solid var(--red); }
+    .focus-kicker { color: var(--red); font-size: 13px; font-weight: 700; }
+    .focus h3 { margin: 4px 0 4px; font-size: 25px; }
+    .focus p { margin: 0; color: var(--muted); }
+    .countdown { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+    .time-box { text-align: center; padding: 10px 4px; background: rgba(20,125,146,.1); border-radius: 6px; }
+    .time-box b { display: block; font-size: clamp(24px, 5vw, 38px); line-height: 1; font-variant-numeric: tabular-nums; }
+    .time-box span { font-size: 12px; color: var(--muted); }
+    .subline { font-size: 12px; color: var(--muted); margin-top: 10px; }
+    .next-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 7px; border: 1px solid var(--line); border-radius: 6px; padding: 8px 12px; background: var(--panel); color: var(--ink); text-decoration: none; cursor: pointer; font-size: 13px; }
+    .btn.primary { color: #fff; background: var(--teal); border-color: var(--teal); }
+    .btn.small { padding: 6px 9px; font-size: 12px; }
+    .btn:hover { filter: brightness(.96); }
+    .map-panel { padding: 14px; overflow: hidden; }
+    .route-map { width: 100%; height: auto; display: block; background: #eaf3f1; border-radius: 6px; }
+    body.night .route-map { filter: brightness(.72) saturate(.85); }
+    .map-legend { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 10px; color: var(--muted); font-size: 12px; }
+    .legend-item { display: inline-flex; gap: 6px; align-items: center; }
+    .dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+    .booking-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .booking { padding: 15px; }
+    .booking .tag { color: var(--teal); font-size: 12px; font-weight: 700; }
+    .booking h3 { font-size: 17px; margin: 5px 0 6px; }
+    .booking p { color: var(--muted); margin: 3px 0; font-size: 13px; }
+    .price { margin-top: 10px; font-weight: 700; color: var(--red); }
+    .day-tabs { display: flex; gap: 8px; overflow-x: auto; padding: 2px 1px 10px; scrollbar-width: thin; }
+    .day-tab { flex: 0 0 auto; border: 1px solid var(--line); color: var(--muted); background: var(--panel); border-radius: 6px; padding: 8px 13px; cursor: pointer; }
+    .day-tab.active { background: var(--ink); color: var(--panel); border-color: var(--ink); }
+    .day-card { padding: 16px; }
+    .day-card[hidden] { display: none; }
+    .day-top { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; }
+    .day-top h3 { margin: 0; font-size: 20px; }
+    .day-top p { margin: 3px 0 0; color: var(--muted); font-size: 13px; }
+    .day-controls { display: flex; flex-wrap: wrap; gap: 7px; justify-content: flex-end; }
+    .timeline { margin-top: 15px; }
+    .stop { display: grid; grid-template-columns: 76px 18px 1fr; gap: 10px; min-height: 92px; }
+    .stop-time { font-variant-numeric: tabular-nums; font-weight: 700; font-size: 14px; padding-top: 3px; }
+    .rail { position: relative; display: flex; justify-content: center; }
+    .rail:before { content: ""; position: absolute; top: 8px; bottom: -8px; border-left: 2px dashed var(--line); }
+    .stop:last-child .rail:before { display: none; }
+    .pin { position: relative; z-index: 1; width: 14px; height: 14px; border: 3px solid var(--panel); border-radius: 50%; background: var(--teal); box-shadow: 0 0 0 1px var(--teal); }
+    .stop-body { padding-bottom: 14px; }
+    .stop-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .stop-title { font-weight: 700; font-size: 16px; }
+    .stop-desc { color: var(--muted); font-size: 13px; margin: 3px 0 7px; }
+    .stop-detail { border: 1px solid var(--line); border-radius: 6px; padding: 10px; margin-top: 8px; background: rgba(20,125,146,.04); }
+    .stop-detail[hidden] { display: none; }
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .chip { font-size: 11px; border-radius: 99px; padding: 3px 7px; background: rgba(202,138,4,.13); color: var(--gold); }
+    .chip.done { background: rgba(20,125,146,.13); color: var(--teal); }
+    .logistics { padding: 14px; margin-top: 12px; display: flex; gap: 12px; align-items: flex-start; color: var(--muted); font-size: 13px; }
+    .logistics strong { color: var(--ink); }
+    .spots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .spot { padding: 15px; display: flex; flex-direction: column; gap: 8px; }
+    .spot h3 { margin: 0; font-size: 17px; }
+    .spot p { margin: 0; color: var(--muted); font-size: 13px; flex: 1; }
+    .source { font-size: 11px; color: var(--muted); }
+    .todo-list, .tips { padding: 15px 18px; }
+    .todo-list li { margin: 8px 0; }
+    .todo-list li::marker { color: var(--red); }
+    .tips-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .tip { padding: 14px; }
+    .tip h3 { font-size: 15px; margin: 0 0 4px; }
+    .tip p { margin: 0; color: var(--muted); font-size: 13px; }
+    footer { color: var(--muted); font-size: 12px; text-align: center; padding: 10px 0 28px; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    @media (max-width: 760px) {
+      .wrap { width: min(100% - 22px, 1120px); }
+      header { padding-top: 22px; }
+      header .wrap { display: block; }
+      .meta { text-align: left; margin-top: 10px; }
+      .focus { grid-template-columns: 1fr; padding: 16px; }
+      .booking-grid, .spots, .tips-grid { grid-template-columns: 1fr; }
+      .day-top { display: block; }
+      .day-controls { justify-content: flex-start; margin-top: 10px; }
+      .stop { grid-template-columns: 60px 18px 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div>
+        <div class="eyebrow">Kansai · 9 DAYS · 2 TRAVELERS</div>
+        <h1>关西 9 日旅行手册</h1>
+        <p>京都红叶、宇治、奈良、USJ、神户｜2026.11.21—11.29</p>
+      </div>
+      <div class="meta">页面时间：<span id="localClock">--</span><br />自动显示当地时区</div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section>
+      <div class="section-head"><h2>此刻关注</h2><span class="section-note" id="timezoneLabel">倒计时按事件当地时区计算</span></div>
+      <div class="panel focus">
+        <div>
+          <div class="focus-kicker" id="nextKicker">下一个行程</div>
+          <h3 id="nextTitle">加载中</h3>
+          <p id="nextMeta">正在读取行程时间…</p>
+          <div class="subline" id="nextTravel">距离当前位置：尚未授权定位</div>
+          <div class="next-actions"><a class="btn primary" id="nextMap" target="_blank" rel="noopener">↗ 怎么去</a><button class="btn" id="locateBtn">⌖ 使用当前位置</button></div>
+        </div>
+        <div>
+          <div class="countdown" aria-label="倒计时"><div class="time-box"><b id="cdDays">--</b><span>天</span></div><div class="time-box"><b id="cdHours">--</b><span>时</span></div><div class="time-box"><b id="cdMinutes">--</b><span>分</span></div><div class="time-box"><b id="cdSeconds">--</b><span>秒</span></div></div>
+          <div class="subline" id="countdownTarget">目标时间：--</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head"><h2>行程总览地图</h2><span class="section-note">手绘路线 · 每晚住宿以圆点标记</span></div>
+      <div class="panel map-panel">
+        <svg class="route-map" viewBox="0 0 900 410" role="img" aria-label="关西行程手绘地图">
+          <rect width="900" height="410" fill="#eaf3f1"/>
+          <path d="M42 62 C180 24 270 82 367 105 S560 148 760 76" fill="none" stroke="#c8dfd9" stroke-width="34" stroke-linecap="round"/>
+          <path d="M64 330 C190 285 270 300 365 245 S565 280 822 315" fill="none" stroke="#d6e5f1" stroke-width="26" stroke-linecap="round"/>
+          <path d="M110 280 C210 230 260 196 337 166" fill="none" stroke="#d1495b" stroke-width="5" stroke-dasharray="10 9"/>
+          <path d="M337 166 C430 126 535 175 638 222" fill="none" stroke="#ca8a04" stroke-width="5" stroke-dasharray="10 9"/>
+          <path d="M638 222 C701 257 755 277 817 306" fill="none" stroke="#147d92" stroke-width="5" stroke-dasharray="10 9"/>
+          <path d="M638 222 C650 160 681 121 742 91" fill="none" stroke="#6b5ca5" stroke-width="5" stroke-dasharray="10 9"/>
+          <g fill="#102a43" font-size="18" font-family="sans-serif"><text x="64" y="366">关西机场</text><text x="305" y="197">京都</text><text x="555" y="257">奈良 / 宇治</text><text x="728" y="346">神户</text><text x="734" y="67">大阪</text></g>
+          <g stroke="#fff" stroke-width="4"><circle cx="110" cy="280" r="11" fill="#d1495b"/><circle cx="337" cy="166" r="11" fill="#ca8a04"/><circle cx="638" cy="222" r="11" fill="#147d92"/><circle cx="817" cy="306" r="11" fill="#147d92"/><circle cx="742" cy="91" r="11" fill="#6b5ca5"/></g>
+          <g fill="#102a43" font-size="12" font-family="sans-serif"><text x="95" y="260">11/21</text><text x="320" y="145">11/22—25</text><text x="621" y="202">11/22</text><text x="800" y="286">11/28</text><text x="725" y="113">11/25—27</text></g>
+        </svg>
+        <div class="map-legend"><span class="legend-item"><i class="dot" style="background:#d1495b"></i>抵达</span><span class="legend-item"><i class="dot" style="background:#ca8a04"></i>京都</span><span class="legend-item"><i class="dot" style="background:#147d92"></i>奈良 / 宇治 / 神户</span><span class="legend-item"><i class="dot" style="background:#6b5ca5"></i>大阪住宿</span></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head"><h2>已确认的交通与住宿</h2><span class="section-note">公开页不显示订单号、证件号、房间号</span></div>
+      <div class="booking-grid">
+        <article class="panel booking"><div class="tag">去程航班 · 已出票</div><h3>香港 → 关西机场</h3><p>11月21日 15:45 HKG T2 → 20:20 KIX T1</p><p>香港快运 UO862 · 约3小时35分</p><div class="price">票价：待补充</div></article>
+        <article class="panel booking"><div class="tag">返程航班 · 已出票</div><h3>关西机场 → 香港</h3><p>11月29日 08:05 KIX T2 → 11:45 HKG T1</p><p>乐桃航空 MM63 · 约4小时40分</p><div class="price">票价：待补充</div></article>
+        <article class="panel booking"><div class="tag">酒店 · 11/21—11/22</div><h3>赛因旅馆 四条河原町</h3><p>双床房 · 共用浴室 · 1晚</p><p>京都市四条河原町区域</p><div class="price">¥705.78 RMB</div></article>
+        <article class="panel booking"><div class="tag">酒店 · 11/22—11/25</div><h3>大同花园酒店京都</h3><p>双床房 · 3晚</p><p>Fukakusa Nishiura-cho, Fushimi-ku, Kyoto 612-0029</p><div class="price">¥2,190.40 RMB</div></article>
+        <article class="panel booking"><div class="tag">酒店 · 11/25—11/28</div><h3>淀屋桥京阪酒店</h3><p>Hotel Keihan Yodoyabashi · 15:00 入住 / 11:00 退房</p><p>2 Chome-4-6 Kitahama, Chuo-ku, Osaka</p><div class="price">线上 ¥1,402.17 + 到店 ¥52.35 RMB</div></article>
+        <article class="panel booking"><div class="tag">住宿缺口 · 11/28</div><h3>机场过夜</h3><p>不新增酒店，神户结束后乘铁路前往 KIX。</p><p>建议使用机场公共区域或 Aeroplaza，T2 夜间开放范围出发前确认。</p><div class="price">新增住宿：¥0</div></article>
+      </div>
+      <div class="panel logistics"><span>¥</span><div><strong>住宿合计：¥4,350.70 RMB · 两人 AA：¥2,175.35/人</strong><br />不含机票、门票、交通、租车及餐饮；机场过夜不计住宿费。</div></div>
+    </section>
+
+    <section id="daily">
+      <div class="section-head"><h2>当日路线规划</h2><span class="section-note">点击日期展开；每个点可导航和查看详情</span></div>
+      <div class="day-tabs" id="dayTabs"></div>
+      <div id="dayCards"></div>
+    </section>
+
+    <section>
+      <div class="section-head"><h2>种草的打卡地</h2><span class="section-note">来自小红书链接 · 未排入行程显示“可选加餐”</span></div>
+      <div class="spots">
+        <article class="panel spot"><div class="chips"><span class="chip done">已排入 11/23</span></div><h3>岚山 · 宝筐院</h3><p>红叶庭院与苔庭层次感强，适合早到避开人流；常见门票约 ¥500 日元，通常无需预约。</p><div class="source">来源：<a href="https://xhslink.cn/o/Aygw3mk7nDG" target="_blank" rel="noopener">小红书《岚山：宝筐院…》</a></div><a class="btn small" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Hokyo-in+Temple+Kyoto">↗ 打开地图</a></article>
+        <article class="panel spot"><div class="chips"><span class="chip done">已排入 11/24</span></div><h3>贵船神社</h3><p>山谷溪流与朱色灯笼是秋季重点；神社本身免费，通常无需预约，贵船餐厅另计且本手册暂不加入。</p><div class="source">来源：<a href="https://xhslink.cn/o/243go4KNBWy" target="_blank" rel="noopener">小红书京都红叶路线笔记</a></div><a class="btn small" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Kifune+Shrine+Kyoto">↗ 打开地图</a></article>
+        <article class="panel spot"><div class="chips"><span class="chip">可选加餐</span></div><h3>京都红叶地图候选</h3><p>后续从笔记中继续补齐寺院、最佳拍照时间、预约开放日与官网入口。</p><div class="source">来源：<a href="https://xhslink.cn/o/3mlERrgxCra" target="_blank" rel="noopener">小红书《京都赏枫地图》</a></div><a class="btn small" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Kyoto+autumn+leaves">↗ 打开地图</a></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head"><h2>待办清单</h2><span class="section-note">纯列表；完成后告诉我，我来改页面</span></div>
+      <div class="panel todo-list"><ul><li>确认首晚酒店可接受 23:45 后深夜入住</li><li>核对 JR Haruka 晚间班次，准备 ICOCA / Haruka 票</li><li>11月24日前确认京都酒店到大阪酒店的行李配送规则</li><li>预订 11月25日市区自行车，并确认还车时间与雨天政策</li><li>购买 USJ 入园票，关注 Super Nintendo World 定时入场</li><li>确认 11月28日 KIX 公共区域 / Aeroplaza 的夜间开放安排</li><li>补充机票、门票和租车价格，更新人均 AA</li></ul></div>
+    </section>
+
+    <section>
+      <div class="section-head"><h2>实用贴士</h2><span class="section-note">会随新订单和路线继续更新</span></div>
+      <div class="tips-grid"><article class="panel tip"><h3>时区</h3><p>香港为 UTC+8，日本为 UTC+9。页面所有事件使用带时区的 ISO 时间，倒计时按绝对时间计算。</p></article><article class="panel tip"><h3>11/21 深夜到达</h3><p>20:20 抵达后，入境和托运行李可能耗时 60-90 分钟。铁路方案可行，但末班车和酒店深夜入住必须提前确认。</p></article><article class="panel tip"><h3>红叶季预约</h3><p>宝筐院、贵船神社通常不需要预约；USJ 门票与热门定时入场项目需要提前购买或预约。价格以官方页面为准。</p></article><article class="panel tip"><h3>28日晚机场过夜</h3><p>不加订酒店。建议从神户傍晚出发，目标 21:00-22:00 抵达 KIX；T2 夜间可进入区域和清晨接驳安排需临近出发再核对。</p></article></div>
+    </section>
+  </main>
+  <footer>最后更新：2026-09-16 · 餐厅信息暂不纳入 · 本页可离线打开，导航按钮需要联网</footer>
+
+  <script>
+    const TZ = 'Asia/Tokyo';
+    const trip = [
+      { date:'2026-11-21', label:'11/21', title:'抵达关西 · 前往京都', color:'#d1495b', points:[
+        {time:'20:20', name:'关西国际机场 KIX T1', desc:'香港快运 UO862 抵达；入境、取行李后前往 JR 站。', address:'Kansai International Airport Terminal 1', arrive:'2026-11-21T20:20:00+09:00', duration:'入境约60-90分钟', reason:'行程起点', stay:'约90分钟', reserve:'已出票', lat:34.4347, lng:135.2441},
+        {time:'22:00', name:'JR Haruka → 京都站', desc:'机场直达京都；班次以当天运行图为准。', address:'Kyoto Station', arrive:'2026-11-21T22:00:00+09:00', duration:'约75分钟', reason:'避免深夜多次换乘', stay:'交通', reserve:'车票待确认', lat:34.9858, lng:135.7588},
+        {time:'23:50', name:'赛因旅馆 四条河原町', desc:'首晚入住；已提前联系酒店确认深夜入住。', address:'Shijo Kawaramachi, Kyoto, Japan', arrive:'2026-11-21T23:50:00+09:00', duration:'京都站后约20-30分钟', reason:'休息', stay:'过夜', reserve:'已搞定', lat:35.0037, lng:135.7681}
+      ]},
+      { date:'2026-11-22', label:'11/22', title:'宇治 → 奈良', color:'#ca8a04', points:[
+        {time:'09:00', name:'宇治 · 平等院', desc:'退房后轻装出发；先完成较早闭园的宇治核心景点。', address:'Byodo-in Temple, Uji, Kyoto, Japan', arrive:'2026-11-22T09:00:00+09:00', duration:'京都→宇治约30分钟', reason:'凤凰堂与宇治川秋景', stay:'约2小时', reserve:'现场购票，凤凰堂内部另排号；约¥700日元', reserveUrl:'https://www.byodoin.or.jp/en/', lat:34.8894, lng:135.8077},
+        {time:'13:30', name:'奈良公园 · 东大寺', desc:'宇治转奈良；下午安排奈良公园与东大寺周边。', address:'Nara Park, Nara, Japan', arrive:'2026-11-22T13:30:00+09:00', duration:'宇治→奈良约45分钟', reason:'鹿群、古寺与开阔步道', stay:'约2.5小时', reserve:'通常无需预约', lat:34.6851, lng:135.8430},
+        {time:'16:30', name:'若草山方向 · 日落', desc:'视体力和日落时间决定是否登山；11月底天黑较早。', address:'Mount Wakakusa, Nara, Japan', arrive:'2026-11-22T16:30:00+09:00', duration:'奈良公园内步行', reason:'日落视野', stay:'约60分钟', reserve:'现场购票', lat:34.6873, lng:135.8564},
+        {time:'19:30', name:'大同花园酒店京都', desc:'回京都办理第二家酒店入住。', address:'3-61 Fukakusa Nishiura-cho, Fushimi-ku, Kyoto 612-0029', arrive:'2026-11-22T19:30:00+09:00', duration:'奈良→京都约50-70分钟', reason:'换宿', stay:'过夜', reserve:'已搞定', lat:34.9645, lng:135.7696}
+      ]},
+      { date:'2026-11-23', label:'11/23', title:'京都红叶主线 · 岚山', color:'#147d92', points:[
+        {time:'07:30', name:'岚山竹林', desc:'早到拍摄竹林与渡月桥，避开午间人潮。', address:'Arashiyama Bamboo Forest, Kyoto, Japan', arrive:'2026-11-23T07:30:00+09:00', duration:'酒店→岚山约45分钟', reason:'清晨光线和人流更友好', stay:'约90分钟', reserve:'无需预约', lat:35.0172, lng:135.6713},
+        {time:'09:30', name:'宝筐院', desc:'红叶庭院重点；建议开门前到达。', address:'Hokyo-in Temple, Kyoto, Japan', arrive:'2026-11-23T09:30:00+09:00', duration:'竹林步行约15分钟', reason:'红叶与苔庭层次', stay:'约60-90分钟', reserve:'通常无需预约；约¥500日元', lat:35.0206, lng:135.6745},
+        {time:'12:00', name:'天龙寺', desc:'庭园与曹源池，作为岚山中段缓冲。', address:'Tenryu-ji Temple, Kyoto, Japan', arrive:'2026-11-23T12:00:00+09:00', duration:'宝筐院步行约15分钟', reason:'池泉回游式庭园', stay:'约90分钟', reserve:'通常无需预约；约¥500日元', lat:35.0150, lng:135.6730},
+        {time:'15:30', name:'渡月桥 · 岚山河畔', desc:'下午收尾，按体力选择咖啡或返回市区。', address:'Togetsukyo Bridge, Kyoto, Japan', arrive:'2026-11-23T15:30:00+09:00', duration:'天龙寺步行约10分钟', reason:'山水与秋色收尾', stay:'约60分钟', reserve:'无需预约', lat:35.0094, lng:135.6673}
+      ]},
+      { date:'2026-11-24', label:'11/24', title:'贵船神社全天线', color:'#6b5ca5', points:[
+        {time:'09:00', name:'京都市区出发', desc:'按小红书路线前往贵船；建议预留换乘和等车时间。', address:'Kyoto, Japan', arrive:'2026-11-24T09:00:00+09:00', duration:'市区→贵船约60-90分钟', reason:'山间路线需要整块时间', stay:'交通', reserve:'叡山电车/巴士班次待确认', lat:35.0116, lng:135.7681},
+        {time:'10:30', name:'贵船神社', desc:'本宫、结社、奥宫依次游览。', address:'Kifune Shrine, Kyoto, Japan', arrive:'2026-11-24T10:30:00+09:00', duration:'抵达后步行', reason:'溪谷、灯笼与红叶', stay:'约2小时', reserve:'通常无需预约；参拜免费', reserveUrl:'https://kifunejinja.jp/', lat:35.1210, lng:135.7628},
+        {time:'13:00', name:'贵船 → 鞍马（可选）', desc:'体力允许再走鞍马寺线；不要和远距离景点叠加。', address:'Kurama-dera Temple, Kyoto, Japan', arrive:'2026-11-24T13:00:00+09:00', duration:'约30-45分钟', reason:'山寺秋景', stay:'约2小时', reserve:'通常无需预约；约¥500日元', reserveUrl:'https://www.kuramayama.net/', lat:35.1170, lng:135.7729},
+        {time:'18:30', name:'返回京都市区', desc:'山区别拖到太晚，按末班车时间提前下山。', address:'Kyoto, Japan', arrive:'2026-11-24T18:30:00+09:00', duration:'约60-90分钟', reason:'夜间交通缓冲', stay:'交通', reserve:'无需预约', lat:35.0116, lng:135.7681}
+      ]},
+      { date:'2026-11-25', label:'11/25', title:'京都市区骑行 → 大阪', color:'#d1495b', points:[
+        {time:'09:00', name:'京都市区取车', desc:'退房后轻装取车；大件行李前一日寄送到大阪酒店。', address:'Kyoto Station, Kyoto, Japan', arrive:'2026-11-25T09:00:00+09:00', duration:'酒店→取车点约20-30分钟', reason:'城市平路为主', stay:'约30分钟', reserve:'自行车需提前预约', lat:34.9858, lng:135.7588},
+        {time:'10:00', name:'东寺', desc:'从京都站向西南骑行，避开景区接驳拥堵。', address:'To-ji Temple, Kyoto, Japan', arrive:'2026-11-25T10:00:00+09:00', duration:'骑行约15分钟', reason:'五重塔与秋色', stay:'约60分钟', reserve:'通常无需预约；约¥500-800日元', lat:34.9805, lng:135.7477},
+        {time:'12:00', name:'鸭川 · 四条大桥', desc:'沿河慢骑，安排休息和补水。', address:'Shijo Ohashi Bridge, Kyoto, Japan', arrive:'2026-11-25T12:00:00+09:00', duration:'骑行约25分钟', reason:'城市河岸视角', stay:'约60分钟', reserve:'无需预约', lat:35.0036, lng:135.7716},
+        {time:'14:00', name:'祇园 · 八坂神社', desc:'市区步行街段下车推行，注意禁止骑行区域。', address:'Yasaka Shrine, Kyoto, Japan', arrive:'2026-11-25T14:00:00+09:00', duration:'骑行约10分钟', reason:'町家街景与神社', stay:'约90分钟', reserve:'无需预约', lat:35.0037, lng:135.7788},
+        {time:'16:30', name:'还车 → 大阪', desc:'取回寄送行李后，乘铁路前往淀屋桥。', address:'Yodoyabashi Station, Osaka, Japan', arrive:'2026-11-25T16:30:00+09:00', duration:'京都→大阪约45-60分钟', reason:'换宿', stay:'过夜', reserve:'酒店已搞定', lat:34.6925, lng:135.5014}
+      ]},
+      { date:'2026-11-26', label:'11/26', title:'USJ 整日', color:'#147d92', points:[
+        {time:'07:30', name:'日本环球影城 USJ', desc:'尽量提前到园，入园后先处理定时入场区域。', address:'Universal Studios Japan, Osaka, Japan', arrive:'2026-11-26T07:30:00+09:00', duration:'大阪市区→环球城约30-45分钟', reason:'热门项目全天排队波动大', stay:'整日', reserve:'门票需提前购买；超级任天堂世界可能需定时入场', reserveUrl:'https://www.usj.co.jp/web/en/us/tickets', lat:34.6654, lng:135.4323}
+      ]},
+      { date:'2026-11-27', label:'11/27', title:'机动日 / 休息', color:'#627d98', points:[
+        {time:'10:00', name:'机动日', desc:'暂不排固定景点，用于休息、补拍或应对前几日天气变化。', address:'Osaka, Japan', arrive:'2026-11-27T10:00:00+09:00', duration:'市区移动', reason:'保留弹性', stay:'全天', reserve:'无需预约', lat:34.6937, lng:135.5023}
+      ]},
+      { date:'2026-11-28', label:'11/28', title:'神户 → 关西机场过夜', color:'#6b5ca5', points:[
+        {time:'09:30', name:'神户三宫', desc:'大阪出发，先到三宫作为全天据点。', address:'Sannomiya Station, Kobe, Japan', arrive:'2026-11-28T09:30:00+09:00', duration:'大阪→神户约30-40分钟', reason:'城市漫步起点', stay:'约2小时', reserve:'无需预约', lat:34.6941, lng:135.1955},
+        {time:'12:00', name:'北野异人馆街', desc:'坡道较多，穿舒适鞋；按体力选择馆舍。', address:'Kitano-cho, Chuo Ward, Kobe, Japan', arrive:'2026-11-28T12:00:00+09:00', duration:'三宫步行约15分钟', reason:'港口城市历史街区', stay:'约2小时', reserve:'馆舍单独购票', lat:34.7027, lng:135.1898},
+        {time:'15:00', name:'神户港 / Harborland', desc:'傍晚前收尾，随后直接去机场。', address:'Kobe Harborland, Kobe, Japan', arrive:'2026-11-28T15:00:00+09:00', duration:'北野→港区约20-30分钟', reason:'海港日落与夜景', stay:'约2小时', reserve:'无需预约', lat:34.6800, lng:135.1862},
+        {time:'18:30', name:'铁路前往 KIX', desc:'目标21:00-22:00抵达机场；机场过夜，不新增酒店。', address:'Kansai International Airport Terminal 1/2', arrive:'2026-11-28T18:30:00+09:00', duration:'神户→KIX约90-120分钟，需换乘', reason:'为08:05航班留足缓冲', stay:'过夜', reserve:'末班车与夜间开放区域待临近确认', lat:34.4347, lng:135.2441}
+      ]},
+      { date:'2026-11-29', label:'11/29', title:'返程', color:'#d1495b', points:[
+        {time:'08:05', name:'关西国际机场 KIX T2', desc:'乐桃 MM63 起飞，提前完成值机与安检。', address:'Kansai International Airport Terminal 2', arrive:'2026-11-29T08:05:00+09:00', duration:'机场内步行与接驳', reason:'返程', stay:'交通', reserve:'已出票', lat:34.4347, lng:135.2441}
+      ]}
+    ];
+
+    const mapUrl = p => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.address || p.name)}`;
+    const multiMapUrl = points => {
+      if (!points.length) return '#';
+      const origin = encodeURIComponent(points[0].address || points[0].name);
+      const destination = encodeURIComponent(points[points.length - 1].address || points[points.length - 1].name);
+      const waypoints = points.slice(1, -1).map(p => encodeURIComponent(p.address || p.name)).join('|');
+      return `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}&travelmode=transit${waypoints ? `&waypoints=${waypoints}` : ''}`;
+    };
+    const fmt = (date, opts={}) => new Intl.DateTimeFormat('zh-CN', {timeZone: TZ, ...opts}).format(date);
+    const iso = s => new Date(s);
+    const allPoints = trip.flatMap(day => day.points.map(p => ({...p, day: day.label, dayTitle: day.title})));
+    let currentPosition = null;
+    const distanceKm = (a,b) => { const rad=Math.PI/180, dLat=(b.lat-a.lat)*rad, dLng=(b.lng-a.lng)*rad, x=Math.sin(dLat/2)**2+Math.cos(a.lat*rad)*Math.cos(b.lat*rad)*Math.sin(dLng/2)**2; return 6371*2*Math.atan2(Math.sqrt(x),Math.sqrt(1-x)); };
+
+    function renderDays() {
+      const tabs = document.querySelector('#dayTabs');
+      const cards = document.querySelector('#dayCards');
+      tabs.innerHTML = trip.map((d,i) => `<button class="day-tab ${i===0?'active':''}" data-day="${i}">${d.label}</button>`).join('');
+      cards.innerHTML = trip.map((d,i) => `<article class="panel day-card" data-card="${i}" ${i===0?'':'hidden'}><div class="day-top"><div><h3>${d.label} · ${d.title}</h3><p>${d.points.length} 个行程点 · 路线按时间顺序排列</p></div><div class="day-controls"><a class="btn small primary" target="_blank" rel="noopener" href="${multiMapUrl(d.points)}">↗ 全部串联</a><a class="btn small" target="_blank" rel="noopener" href="${multiMapUrl(d.points)}">↗ 当天导航</a></div></div><div class="timeline">${d.points.map((p,j) => `<div class="stop"><div class="stop-time">${p.time}<br /><span class="section-note">JST</span></div><div class="rail"><span class="pin"></span></div><div class="stop-body"><div class="stop-head"><span class="stop-title">${p.name}</span><a class="btn small" target="_blank" rel="noopener" href="${mapUrl(p)}" aria-label="导航到${p.name}">↗</a></div><div class="stop-desc">${p.desc}</div><div class="chips"><span class="chip ${p.reserve.includes('已')?'done':''}">${p.reserve}</span><span class="chip">停留：${p.stay}</span><span class="chip">交通：${p.duration}</span></div><button class="btn small detail-toggle" data-detail="${i}-${j}" aria-expanded="false">展开详情</button><div class="stop-detail" id="detail-${i}-${j}" hidden><div><strong>地址：</strong>${p.address}</div><div><strong>推荐理由：</strong>${p.reason}</div><div><strong>预约状态：</strong>${p.reserve}</div><div><strong>预计到达：</strong>${p.time}（日本时间）</div>${p.reserveUrl?`<div><strong>预约网址：</strong><a href="${p.reserveUrl}" target="_blank" rel="noopener">打开官方页面</a></div>`:''}</div></div></div>`).join('')}</div>${i===1?'<div class="logistics"><span>行李</span><div><strong>建议：22日只带小包。</strong>大件行李可由京都酒店寄送至大阪酒店，需提前确认代收和送达时间。</div></div>':''}${i===4?'<div class="logistics"><span>骑行</span><div><strong>市区路线。</strong>25日早上取车，沿东寺—鸭川—祇园骑行，16:30前还车并前往大阪。</div></div>':''}</article>`).join('');
+      tabs.addEventListener('click', e => { const b=e.target.closest('.day-tab'); if(!b)return; const idx=Number(b.dataset.day); document.querySelectorAll('.day-tab').forEach(x=>x.classList.toggle('active', x===b)); document.querySelectorAll('.day-card').forEach((x,i)=>x.hidden=i!==idx); });
+      document.querySelectorAll('.detail-toggle').forEach(btn => btn.addEventListener('click', () => { const box=document.querySelector('#detail-'+btn.dataset.detail); const open=!box.hidden; box.hidden=open; btn.setAttribute('aria-expanded', String(!open)); btn.textContent=open?'展开详情':'收起详情'; }));
+    }
+
+    function updateClock() {
+      const now = new Date();
+      document.querySelector('#localClock').textContent = new Intl.DateTimeFormat('zh-CN',{dateStyle:'medium',timeStyle:'medium'}).format(now);
+      document.querySelector('#timezoneLabel').textContent = `事件时区：日本标准时间（UTC+9） · 现在：${Intl.DateTimeFormat().resolvedOptions().timeZone}`;
+      const upcoming = allPoints.filter(p => iso(p.arrive) > now).sort((a,b)=>iso(a.arrive)-iso(b.arrive))[0];
+      const target = upcoming || allPoints[allPoints.length-1];
+      const diff = Math.max(0, iso(target.arrive)-now);
+      const sec = Math.floor(diff/1000), days=Math.floor(sec/86400), hours=Math.floor(sec%86400/3600), mins=Math.floor(sec%3600/60), seconds=sec%60;
+      document.querySelector('#nextTitle').textContent = target.name;
+      document.querySelector('#nextMeta').textContent = `${target.day} · 预计 ${target.time} JST · ${target.duration}`;
+      if (currentPosition && target.lat && target.lng) { const km=distanceKm(currentPosition,target); const minutes=Math.max(5,Math.round(km < 2 ? km/5*60 : km/30*60)); document.querySelector('#nextTravel').textContent=`距当前位置直线约 ${km.toFixed(1)} km · 移动时长粗估 ${minutes} 分钟`; } else document.querySelector('#nextTravel').textContent='距离当前位置：尚未授权定位';
+      document.querySelector('#nextMap').href = mapUrl(target);
+      document.querySelector('#countdownTarget').textContent = `目标时间：${fmt(iso(target.arrive),{dateStyle:'medium',timeStyle:'short'})} 日本时间`;
+      ['cdDays','cdHours','cdMinutes','cdSeconds'].forEach((id,i)=>document.querySelector('#'+id).textContent=String([days,hours,mins,seconds][i]).padStart(2,'0'));
+      document.querySelector('#nextKicker').textContent = upcoming ? `下一个行程 · ${target.dayTitle}` : '行程已结束';
+      const h = Number(new Intl.DateTimeFormat('en-US',{hour:'numeric',hour12:false}).format(now)); document.body.classList.toggle('night', h<6 || h>=18);
+    }
+
+    document.querySelector('#locateBtn').addEventListener('click', () => {
+      if (!navigator.geolocation) { document.querySelector('#nextTravel').textContent='当前浏览器不支持定位'; return; }
+      navigator.geolocation.getCurrentPosition(pos => { currentPosition={lat:pos.coords.latitude,lng:pos.coords.longitude}; updateClock(); }, () => { document.querySelector('#nextTravel').textContent='定位未授权，仍可直接打开地图导航'; }, {enableHighAccuracy:false, timeout:8000});
+    });
+    renderDays(); updateClock(); setInterval(updateClock, 1000);
+  </script>
+</body>
+</html>
